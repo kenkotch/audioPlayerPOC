@@ -38,10 +38,10 @@ const PlaylistScreen = () => {
       // await TrackPlayer.add(playlistData);
       await TrackPlayer.add({
         id: 'randomTrackId',
-        url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+        url: 'https://stream.radioparadise.com/rock-192',
         title: 'How To Survive the Apocalypse',
         artist: 'Lucy',
-        // artwork: 'https://picsum.photos/200',
+        artwork: 'https://picsum.photos/200',
       });
       await TrackPlayer.play();
     } else {
@@ -57,7 +57,7 @@ const PlaylistScreen = () => {
     <View style={styles.container}>
         <BottomSheet
           initialSnap={1}
-          snapPoints={[300, 50]}
+          snapPoints={[400, 75]}
           renderContent={() => (
             <View style={{borderTopColor: 'black', borderTopWidth: 2}}>
               <Player

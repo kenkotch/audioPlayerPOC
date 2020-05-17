@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import TrackPlayer from 'react-native-track-player';
 import {
   usePlaybackState,
@@ -19,13 +19,14 @@ export default function Player(props) {
   const playbackState = usePlaybackState();
   const [trackTitle, setTrackTitle] = useState('');
   const [trackArtist, setTrackArtist] = useState('');
+  const [trackArtwork, setTrackArtwork] = useState('');
 
   useTrackPlayerEvents(['playback-track-changed'], async (event) => {
     if (event.type === TrackPlayer.TrackPlayerEvents.PLAYBACK_TRACK_CHANGED) {
       const track = await TrackPlayer.getTrack(event.nextTrack);
       setTrackTitle(track.title);
       setTrackArtist(track.artist);
-      // setTrackArtwork(track.artwork);
+      setTrackArtwork(track.artwork);
     }
   });
 
@@ -42,10 +43,10 @@ export default function Player(props) {
 
   return (
     <View style={[styles.card, style]}>
-      {/* <Image
+      <Image
         style={styles.cover}
         source={trackArtwork ? {uri: trackArtwork} : null}
-      /> */}
+      />
       <ProgressBar />
       <Text style={styles.title}>{trackTitle}</Text>
       <Text style={styles.artist}>{trackArtist}</Text>
